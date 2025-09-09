@@ -2,8 +2,10 @@
 
 ## Overview 
 
-Everything Notes
+This repos serves as a center hub where i note all my concepts related in IT 
 
+---
+You can see the site at : https://andyy171.github.io/knowledge-hub/
 ## Repo Structure
 ```
 knowledge-hub/                    # Root repository

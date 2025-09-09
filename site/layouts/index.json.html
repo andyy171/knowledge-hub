@@ -1,13 +1,15 @@
 {{- $pages := .Site.RegularPages -}}
 {{- $data := slice -}}
 {{- range $pages -}}
+  {{- $date := "" -}}
+  {{- if .Date -}}{{- $date = .Date.Format "2006-01-02" -}}{{- end -}}
   {{- $item := dict 
     "title" .Title 
     "permalink" .Permalink 
-    "content" (.Plain | truncate 500) 
+    "content" (.Plain | htmlUnescape | truncate 500) 
     "tags" .Params.tags 
     "categories" .Params.categories 
-    "date" .Date.Format "2006-01-02"
+    "date" $date
   -}}
   {{- $data = $data | append $item -}}
 {{- end -}}

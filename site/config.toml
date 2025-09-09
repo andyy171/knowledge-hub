@@ -1,6 +1,8 @@
 baseURL = 'https://andyy171.github.io/knowledge-hub'
 languageCode = 'vi-VN'
 title = 'Personal Knowledge Hub'
+relativeURLs = true
+canonifyURLs = true
 
 # Build performance
 timeout = '30s'

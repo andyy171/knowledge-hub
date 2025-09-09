@@ -11,7 +11,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 
-    <!-- Favicon (nếu có) -->
+    <!-- Favicon -->
     <link rel="icon" href="{{ "images/favicon.ico" | relURL }}">
 </head>
 <body>
@@ -24,9 +24,10 @@
     {{- partial "footer.html" . -}}
     {{- partial "search.html" . -}}
     
-    <script src="/js/search.js"></script>
+    <!-- JS -->
+    <script src="{{ "js/search.js" | relURL }}"></script>
     {{- if .Site.Params.enableRating -}}
-    <script src="/js/rating.js"></script>
+    <script src="{{ "js/rating.js" | relURL }}"></script>
     {{- end -}}
 </body>
 </html>

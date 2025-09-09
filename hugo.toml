@@ -1,0 +1,58 @@
+baseURL = 'https://https://andyy171.github.io/knowledge-hub'
+languageCode = 'vi-VN'
+title = 'Personal Knowledge Hub'
+theme = 'custom'
+
+# Build performance
+timeout = '30s'
+enableGitInfo = true
+enableEmoji = true
+
+# Content management
+paginate = 50
+paginatePath = 'page'
+
+# Markdown processing
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = 'github'
+    lineNos = true
+    tabWidth = 2
+
+# Taxonomy
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+  author = 'authors'
+
+# Site parameters
+[params]
+  description = 'Personal Knowledge Repository'
+  author = 'Your Name'
+  dateFormat = '02/01/2006'
+  search = true
+  rating = true
+  
+# Menu structure
+[[menu.main]]
+  name = 'Linux'
+  url = '/linux/'
+  weight = 10
+
+[[menu.main]]
+  name = 'Kubernetes'
+  url = '/kubernetes/'
+  weight = 20
+
+[[menu.main]]
+  name = 'Programming'
+  url = '/programming/'
+  weight = 30
+
+[[menu.main]]
+  name = 'Networking'
+  url = '/networking/'
+  weight = 40

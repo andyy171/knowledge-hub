@@ -1,0 +1,97 @@
+name: Sync Content
+
+on:
+  workflow_dispatch:  
+  schedule:
+    - cron: '0 0 * * *'  
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Sync content from repositories
+      run: |
+        # Create temp directory
+        TEMP_DIR="/tmp/knowledge-sync"
+        mkdir -p $TEMP_DIR
+        cd $TEMP_DIR
+        
+        # Define repositories and content directory
+        OLD_REPOS=("linux-notes" "k8s-notes" "networking-notes" "programming-notes")
+        CONTENT_DIR="$GITHUB_WORKSPACE/site/content"
+        
+        echo "🔄 Starting content sync from old repositories..."
+        
+        # Clone and sync each repository
+        for repo in "${OLD_REPOS[@]}"; do
+            echo "📥 Syncing from $repo..."
+            
+            # Clone repository
+            git clone "https://github.com/andyy171/$repo.git"
+            cd $repo
+            
+            # Determine target directory
+            case $repo in
+                "linux-notes")
+                    TARGET_DIR="$CONTENT_DIR/linux"
+                    ;;
+                "k8s-notes")
+                    TARGET_DIR="$CONTENT_DIR/kubernetes"
+                    ;;
+                "networking-notes")
+                    TARGET_DIR="$CONTENT_DIR/networking"
+                    ;;
+                "programming-notes")
+                    TARGET_DIR="$CONTENT_DIR/programming"
+                    ;;
+            esac
+            
+            # Create target directory
+            mkdir -p "$TARGET_DIR"
+            
+            # Copy markdown files with front matter processing
+            find . -name "*.md" -type f | while read file; do
+                filename=$(basename "$file")
+                target_file="$TARGET_DIR/$filename"
+                
+                # Add/update front matter if missing
+                if ! grep -q "^---" "$file"; then
+                    echo "📝 Adding front matter to $filename..."
+                    {
+                        echo "---"
+                        echo "title: \"$(basename "$file" .md)\""
+                        echo "date: $(date -Iseconds)"
+                        echo "lastmod: $(date -Iseconds)"
+                        echo "draft: false"
+                        echo "categories: [\"$(echo $repo | sed 's/-notes//' | sed 's/k8s/Kubernetes/' | sed 's/\b\w/\U&/g')\"]"
+                        echo "tags: []"
+                        echo "summary: \"\""
+                        echo "rating: 0"
+                        echo "notes: \"\""
+                        echo "---"
+                        echo ""
+                        cat "$file"
+                    } > "$target_file"
+                else
+                    cp "$file" "$target_file"
+                fi
+            done
+            
+            cd ..
+        done
+        
+        # Cleanup
+        rm -rf $TEMP_DIR
+        
+        echo "✅ Content sync completed!"
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add site/content/
+        git commit -m "Sync content from repositories" || echo "No changes to commit"
+        git push

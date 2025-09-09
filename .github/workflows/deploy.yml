@@ -2,7 +2,7 @@ name: Deploy Hugo Site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -26,10 +26,10 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.120.0'
+          hugo-version: 'latest'
           extended: true
 
-      - name: Setup Node.js (for Pagefind)
+      - name: Setup Node.js 
         uses: actions/setup-node@v4
         with:
           node-version: '18'
@@ -39,12 +39,12 @@ jobs:
       - name: Install dependencies
         run: |
           cd site
-          npm ci
+          npm install
 
       - name: Build Hugo site
         run: |
           cd site
-          hugo --minify --gc
+          hugo --minify --gc --baseURL ${{ github.event.repository.html_url }}
 
       - name: Generate search index
         run: |
@@ -52,7 +52,7 @@ jobs:
           npx pagefind --source "public"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './site/public'
 
@@ -65,4 +65,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4

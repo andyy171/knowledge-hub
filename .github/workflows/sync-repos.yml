@@ -1,0 +1,53 @@
+name: Sync content from other repositories
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync Linux notes
+        run: |
+          # Clone repo linux-notes
+          git clone https://github.com/YOUR_USERNAME/linux-notes.git temp-linux
+          
+          # Copy và format files
+          mkdir -p site/content/linux
+          cp -r temp-linux/*.md site/content/linux/ 2>/dev/null || true
+          
+          # Cleanup
+          rm -rf temp-linux
+
+      - name: Sync Kubernetes notes  
+        run: |
+          git clone https://github.com/YOUR_USERNAME/k8s-notes.git temp-k8s
+          mkdir -p site/content/kubernetes
+          cp -r temp-k8s/*.md site/content/kubernetes/ 2>/dev/null || true
+          rm -rf temp-k8s
+
+      - name: Process synced files
+        run: |
+          # Add frontmatter to files without it
+          find site/content -name "*.md" -exec scripts/validate-frontmatter.sh {} \;
+
+      - name: Commit changes
+        run: |
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto-sync: Update content from source repositories"
+            git push
+          else
+            echo "No changes to commit"
+          fi

@@ -1,0 +1,68 @@
+{{- define "main" -}}
+<div class="homepage">
+    <section class="hero">
+        <h1>{{ .Site.Title }}</h1>
+        <p class="hero-description">{{ .Site.Params.description }}</p>
+        
+        <div class="search-hero">
+            <input type="search" id="search-input" placeholder="Tìm kiếm trong knowledge base...">
+            <div id="search-results"></div>
+        </div>
+    </section>
+    
+    <section class="topics">
+        <h2>Chủ đề chính</h2>
+        <div class="topics-grid">
+            {{- range .Site.Data.navigation.main -}}
+            <a href="{{ .url }}" class="topic-card">
+                <div class="topic-icon">{{ .icon }}</div>
+                <h3>{{ .name }}</h3>
+                {{- $section := site.GetPage .url -}}
+                {{- if $section -}}
+                <p>{{ len $section.Pages }} bài viết</p>
+                {{- end -}}
+            </a>
+            {{- end -}}
+        </div>
+    </section>
+    
+    <section class="recent">
+        <h2>Cập nhật gần đây</h2>
+        <div class="articles-list">
+            {{- range first 6 (where .Site.RegularPages "Section" "!=" "") -}}
+            <article class="article-card">
+                <h3>
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h3>
+                {{- with .Params.summary -}}
+                <p class="summary">{{ . }}</p>
+                {{- end -}}
+                <div class="meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">
+                        {{ .Date.Format "02/01/2006" }}
+                    </time>
+                    <span class="section">{{ .Section | title }}</span>
+                </div>
+            </article>
+            {{- end -}}
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">{{ len .Site.RegularPages }}</div>
+                <div class="stat-label">Tổng bài viết</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ len .Site.Sections }}</div>
+                <div class="stat-label">Chủ đề</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ len .Site.AllPages }}</div>
+                <div class="stat-label">Trang</div>
+            </div>
+        </div>
+    </section>
+</div>
+{{- end -}}

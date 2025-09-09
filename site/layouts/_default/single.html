@@ -1,0 +1,56 @@
+{{- define "main" -}}
+<article class="article">
+    <header class="article-header">
+        <h1>{{ .Title }}</h1>
+        <div class="article-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ .Date.Format "02/01/2006" }}
+            </time>
+            {{- if .Lastmod -}}
+            <span class="lastmod">
+                (cập nhật: {{ .Lastmod.Format "02/01/2006" }})
+            </span>
+            {{- end -}}
+            {{- with .Params.tags -}}
+            <div class="tags">
+                {{- range . -}}
+                <span class="tag">{{ . }}</span>
+                {{- end -}}
+            </div>
+            {{- end -}}
+        </div>
+        
+        {{- if .Site.Params.enableRating -}}
+        {{- partial "rating.html" . -}}
+        {{- end -}}
+    </header>
+    
+    <div class="article-content">
+        {{ .Content }}
+    </div>
+    
+    <footer class="article-footer">
+        {{- with .Params.categories -}}
+        <div class="categories">
+            <strong>Chủ đề:</strong>
+            {{- range . -}}
+            <a href="/categories/{{ . | urlize }}">{{ . }}</a>
+            {{- end -}}
+        </div>
+        {{- end -}}
+    </footer>
+</article>
+
+{{- if .Site.Params.enableRating -}}
+<div class="rating-section">
+    <h3>Đánh giá cá nhân</h3>
+    <div class="rating-stars" data-article="{{ .RelPermalink }}">
+        {{- range $i := (seq 1 5) -}}
+        <span class="star" data-rating="{{ $i }}">★</span>
+        {{- end -}}
+    </div>
+    <textarea id="personal-notes" placeholder="Ghi chú cá nhân..."></textarea>
+    <button onclick="saveRating()">Lưu đánh giá</button>
+</div>
+{{- end -}}
+{{- end -}}

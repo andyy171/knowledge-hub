@@ -1,0 +1,27 @@
+main:
+  - name: "Linux"
+    url: "/linux/"
+    icon: "🐧"
+    weight: 10
+    
+  - name: "Kubernetes" 
+    url: "/kubernetes/"
+    icon: "☸️"
+    weight: 20
+    
+  - name: "Backedn"
+    url: "/backend/"
+    icon: "💻"
+    weight: 30
+    
+  - name: "DevOps"
+    url: "/devops/"
+    icon: "🔧"
+    weight: 40
+
+footer:
+  - name: "About"
+    url: "/about/"
+    
+  - name: "Contact"
+    url: "/contact/"

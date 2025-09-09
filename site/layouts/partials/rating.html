@@ -1,0 +1,8 @@
+<div class="current-rating" data-article="{{ .RelPermalink }}">
+    <span class="rating-label">Đánh giá của bạn:</span>
+    <div class="stars-display">
+        {{- range $i := (seq 1 5) -}}
+        <span class="star-display">★</span>
+        {{- end -}}
+    </div>
+</div>

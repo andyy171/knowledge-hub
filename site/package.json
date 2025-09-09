@@ -1,0 +1,16 @@
+{
+  "name": "knowledge-hub",
+  "version": "1.0.0",
+  "description": "Personal Knowledge Hub built with Hugo",
+  "scripts": {
+    "dev": "hugo server -D --bind 0.0.0.0",
+    "build": "hugo --minify --gc",
+    "clean": "rm -rf public resources"
+  },
+  "devDependencies": {
+    "hugo-bin": "^0.111.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

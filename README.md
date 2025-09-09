@@ -21,7 +21,7 @@ knowledge-hub/                    # Root repository
 │   │   │   ├── _index.md
 │   │   │   ├── pods.md
 │   │   │   └── services.md
-│   │   ├── programming/
+│   │   ├── backend/
 │   │   │   └── _index.md
 │   │   └── networking/
 │   │       └── _index.md

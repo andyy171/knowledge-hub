@@ -1,0 +1,32 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>{{ .Site.Title }}</h3>
+                <p>{{ .Site.Params.description }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Liên kết</h4>
+                <ul>
+                    {{- range .Site.Data.navigation.footer -}}
+                    <li><a href="{{ .url }}">{{ .name }}</a></li>
+                    {{- end -}}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Thống kê</h4>
+                <ul>
+                    <li>{{ len .Site.RegularPages }} bài viết</li>
+                    <li>{{ len .Site.Sections }} chủ đề</li>
+                    <li>Cập nhật: {{ now.Format "02/01/2006" }}</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author }}. Built with Hugo.</p>
+        </div>
+    </div>
+</footer>

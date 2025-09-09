@@ -1,16 +1,16 @@
-baseURL = 'https://https://andyy171.github.io/knowledge-hub'
+baseURL = 'https://andyy171.github.io/knowledge-hub'
 languageCode = 'vi-VN'
 title = 'Personal Knowledge Hub'
-theme = 'custom'
 
 # Build performance
 timeout = '30s'
 enableGitInfo = true
 enableEmoji = true
 
-# Content management
-paginate = 50
-paginatePath = 'page'
+# Content management (Hugo >= v0.128)
+[pagination]
+  pagerSize = 50
+  path = 'page'
 
 # Markdown processing
 [markup]
@@ -31,7 +31,7 @@ paginatePath = 'page'
 # Site parameters
 [params]
   description = 'Personal Knowledge Repository'
-  author = 'Your Name'
+  author = 'Duy Anh'
   dateFormat = '02/01/2006'
   search = true
   rating = true
@@ -48,11 +48,16 @@ paginatePath = 'page'
   weight = 20
 
 [[menu.main]]
-  name = 'Programming'
-  url = '/programming/'
+  name = 'Backend'
+  url = '/backend/'
   weight = 30
 
 [[menu.main]]
   name = 'Networking'
   url = '/networking/'
   weight = 40
+
+# Output formats
+[outputs]
+  home = ["HTML", "JSON"]
+  section = ["HTML", "JSON"]

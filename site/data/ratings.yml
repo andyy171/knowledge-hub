@@ -1,0 +1,9 @@
+# Personal ratings for articles
+# This file will be populated automatically by the rating system
+# Format: article_path: { rating: 1-5, notes: "personal notes", date: "2024-01-01" }
+
+# Example:
+# "/linux/file-system/":
+#   rating: 5
+#   notes: "Very useful reference"
+#   date: "2024-01-01"

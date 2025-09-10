@@ -34,6 +34,17 @@ Hệ thống tệp trong Linux cho phép quản lý tệp và thư mục thông 
 - **`rm -r <tên_thư_mục>`**: Xóa thư mục và nội dung (đệ quy).
   - Ví dụ: `rm -r test1` xóa thư mục `test1`.
 
+Quyền của tập tin
+chmod 755 file             # rwx cho owner, rx cho group & others
+chown user:group file      # Thay đổi quyền sở hữu tập tin
+
+Tìm kiếm tập tin
+find / -type f -name "*.log"   # Tìm tất cả file log
+find / -mtime -7               # Tìm file chỉnh sửa trong 7 ngày gần nhất
+
+Sử dụng đĩa
+du -sh *                      # Kích thước thư mục hiện tại
+df -h                         # Dung lượng filesystem
 ---
 
 ## Mẹo

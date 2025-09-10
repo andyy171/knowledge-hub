@@ -23,6 +23,17 @@ Các lệnh mạng trong Linux giúp kiểm tra kết nối, tra cứu thông ti
 - **`wget <URL>`**: Tải tệp từ URL.
   - Ví dụ: `wget <link_python>` tải Python installer.
 
+Kết nối mạng
+ip addr          # Hiển thị địa chỉ IP
+ping -c 4 host   # Kiểm tra kết nối 4 gói tin
+
+Giám sát cổng
+netstat -tulpn   # Cổng đang lắng nghe + quy trình
+ss -tunlp        # Lựa chọn thay thế hiện đại cho netstat
+
+Gỡ lỗi mạng
+tcpdump -i eth0  # Bắt gói tin trên giao diện mạng
+nmap localhost   # Quét các cổng mở
 ---
 
 ## Mẹo

@@ -35,3 +35,75 @@ Shell là giao diện dòng lệnh chính trong Linux, nơi người dùng nhậ
 ## Mẹo
 - Sử dụng phím **Tab** để tự động hoàn thành tên tệp/thư mục.
 - Dùng `&&` để chạy nhiều lệnh liên tiếp: `mkdir test && cd test`.
+
+
+# File manipulation
+Các lệnh chính 
+
+- Tạo thư mục
+
+mkdir <tên_thư_mục>
+mkdir -p cha/con  # tạo đệ quy
+
+```bash
+cp src dest
+cp file1 file2 dir_dest/
+cp -r dir_src dir_dest/
+cp -a src dest  # archive mode: giữ thuộc tính
+```
+
+- Di chuyển / Đổi tên
+
+```bash
+mv từ_đường_dẫn tới_đích
+mv oldname newname
+mv -i file dest  # hỏi trước khi ghi đè
+```
+
+- Xóa
+
+```bash
+rm file
+rm -r dir     # xóa đệ quy
+rm -i file    # tương tác
+```
+
+- Liên kết
+
+```bash
+ln src hardlink
+ln -s src symlink
+```
+
+- Tìm kiếm
+```bash
+find /path -name "pattern"
+```
+
+- Nén / giải nén (tar)
+```bash
+tar -cvf archive.tar thư_mục
+tar -xvf archive.tar
+```
+
+- Xem nội dung
+
+```bash
+cat file
+less file      # pager
+tail -n 20 file
+```
+
+- Chuyển hướng / Pipes
+
+```bash
+ls -l > list.txt
+grep "mẫu" file | less
+```
+- Lưu ý 
+
+```
+- Sử dụng -i để tránh mất dữ liệu do ghi đè.
+- Dùng cp -a để giữ quyền/owner/timestamps.
+- ln -s tạo symlink — quyền áp dụng cho target, không cho symlink.
+```

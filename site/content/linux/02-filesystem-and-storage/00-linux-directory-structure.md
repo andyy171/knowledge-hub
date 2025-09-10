@@ -1,5 +1,5 @@
 ---
-title: "Thao tác với Tệp và Thư mục"
+title: "Cấu trúc thư mục"
 date: 2024-03-12T22:01:00+07:00
 draft: false
 author: "Duy Anh "

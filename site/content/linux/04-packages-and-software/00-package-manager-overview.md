@@ -34,3 +34,36 @@ Quản lý gói phần mềm là kỹ năng quan trọng để cài đặt, cậ
 ## Mẹo
 - Luôn chạy `sudo apt update` trước khi cài đặt để đảm bảo danh sách gói mới nhất.
 - Kiểm tra tên gói chính xác bằng Google hoặc `man apt`.
+
+# Lệnh cài đặt các hệ thống gói 
+
+- Debian/Ubuntu
+
+```bash
+apt update
+apt install pkg
+apt remove pkg
+apt --fix-broken install
+dpkg -i file.deb
+dpkg -l
+```
+
+- RHEL/Fedora
+```bash
+dnf install pkg
+dnf upgrade
+rpm -ivh pkg.rpm
+```
+
+- Snap/Flatpak
+```bash
+snap install <pkg>
+flatpak install flathub <app>
+```
+## Đường dẫn lưu cấu hình
+- Debian: /etc/apt/sources.list và /etc/apt/sources.list.d/
+- RHEL: /etc/yum.repos.d/
+
+- Lưu ý
++ Hầu hết lệnh cài gói cần sudo/root.
++ Đọc changelogs và kiểm tra dependency trước khi upgrade production.

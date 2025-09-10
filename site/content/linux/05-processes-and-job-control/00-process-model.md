@@ -142,3 +142,36 @@ Kết quả: [1] Running xlogo &. **Đưa X Logo lên foreground:**
 bash
 fg %1
 Tiến trình X Logo sẽ hiển thị cửa sổ và chiếm dụng shell. **Kết thúc X Logo bằng Ctrl + C:** Nhấn Ctrl + C để gửi SIGINT, cửa sổ X Logo đóng lại, shell trả về prompt.
+
+
+### Liệt kê các quy trình
+```bash
+ps aux          # Hiển thị tất cả các quy trình đang chạy
+ps -ef          # Định dạng khác để liệt kê quy trình
+ps -u username  # Quy trình của một người dùng cụ thể
+```
+### Theo dõi quy trình
+```bash
+top             # Công cụ tương tác giám sát quy trình
+htop            # Phiên bản nâng cao có màu và hỗ trợ chuột
+```
+
+### Kiểm soát quy trình
+```bash
+kill PID        # Gửi SIGTERM để kết thúc quy trình
+kill -9 PID     # Buộc dừng quy trình (SIGKILL)
+killall name    # Kết thúc tất cả quy trình theo tên
+```
+
+### Quản lý dịch vụ
+```bash
+systemctl start service    # Khởi động dịch vụ
+systemctl stop service     # Dừng dịch vụ
+systemctl restart service  # Khởi động lại dịch vụ
+```
+
+### Quản lý ưu tiên quy trình
+```bash
+nice -n 10 command         # Chạy lệnh với độ ưu tiên thấp hơn
+renice -n 10 -p PID        # Điều chỉnh ưu tiên quy trình đang chạy
+```

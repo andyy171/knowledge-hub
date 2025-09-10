@@ -25,6 +25,9 @@ Các ngôn ngữ lập trình, best practices, và development tools.
 
 [Xem Backend →](/backend/)
 
+### 💻 AWS 
+
+[Xem Backend →](/aws/)
 ## Tính năng
 
 - 🔍 **Tìm kiếm nhanh**: Tìm kiếm trong toàn bộ knowledge base

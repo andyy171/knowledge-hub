@@ -1,8 +1,8 @@
 ---
 title: "Thao tác với Tệp và Thư mục"
-date: 2025-09-09T22:01:00+07:00
+date: 2024-03-12T22:01:00+07:00
 draft: false
-author: "Your Name"
+author: "Duy Anh "
 description: "Hướng dẫn tạo, chỉnh sửa, sao chép, di chuyển và xóa tệp/thư mục trong Linux."
 categories: ["Linux", "Filesystem"]
 tags: ["file", "directory", "operations"]

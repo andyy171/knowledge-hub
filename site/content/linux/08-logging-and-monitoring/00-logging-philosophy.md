@@ -18,3 +18,12 @@ vmstat 1         # Thống kê bộ nhớ ảo mỗi giây
 Phân tích hiệu suất
 perf top         # Phân tích hiệu suất CPU
 strace command   # Theo dõi system calls của một lệnh
+
+Nhật ký hệ thống
+journalctl -f                 # Theo dõi log hệ thống realtime
+journalctl -u service         # Xem log của dịch vụ cụ thể
+tail -f /var/log/syslog       # Theo dõi file log hệ thống
+
+Phân tích nhật ký
+grep -r "error" /var/log/           # Tìm lỗi trong log
+awk '/pattern/ {print $1,$2}' logfile  # Trích trường cụ thể từ log
